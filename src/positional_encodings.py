@@ -63,3 +63,26 @@ class SinusoidalPositionalEncoding(nn.Module):
         
         # Add them together (PyTorch automatically broadcasts across the batch dimension)
         return x + positions
+    
+    
+    
+    
+    
+class LearnedPositionalEncoding(nn.Module):
+    def __init__(self, d_model, max_len):
+        super().__init__()
+        # We only need the positional dictionary here
+        self.pos_emb = nn.Embedding(max_len, d_model)
+        
+    def forward(self, x):
+        # x shape: (batch_size, seq_len, d_model)
+        seq_len = x.size(1)
+        
+        # 1. Generate the ticket on the correct hardware device
+        positions_ticket = torch.arange(seq_len, device=x.device)
+        
+        # 2. Hand the ticket to the dictionary to get the rows
+        positions = self.pos_emb(positions_ticket)
+        
+        # 3. Add them together
+        return x + positions
