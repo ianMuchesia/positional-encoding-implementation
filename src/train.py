@@ -7,7 +7,7 @@ from src.model import ToyModel
 
 
 
-def train_pe_variants(model,X,X_val,Y,Y_val):
+def train_pe_variants(model,X,X_val,Y,Y_val,pe_type):
     
     device = torch.device("cuda" if torch.cuda.is_available() else "cpu")
 
@@ -17,7 +17,7 @@ def train_pe_variants(model,X,X_val,Y,Y_val):
 
     optimizer = optim.Adam(model.parameters(),lr=0.001)
 
-    epochs=10
+    epochs=50
 
 
 
@@ -86,13 +86,14 @@ def train_pe_variants(model,X,X_val,Y,Y_val):
 
     
         # print(f"This is the predicted: {predicted}")
-        
+        #32,10 == 32,10
         correct_guesses = (indices == Y)
             
         total_steps += 1
-        #is_close = torch.abs(output - Y) <= tolerance
+       
         correct += correct_guesses.sum().item()
-            
+           
+        #it does batch * seq_len 
         total_elements = Y.numel()
         
         
@@ -101,7 +102,7 @@ def train_pe_variants(model,X,X_val,Y,Y_val):
         
         average_training_time = total_time /total_steps
         
-        training_accuracy =  100 * correct /total_elements
+        training_accuracy =  100 * (correct /total_elements)
         
         peak_memory_mb = 0
         if device.type == "cuda":
@@ -117,6 +118,7 @@ def train_pe_variants(model,X,X_val,Y,Y_val):
         is_close = 0
         total_steps = 0
         running_loss =0
+        correct = 0
         
     
         
@@ -200,7 +202,7 @@ def train_pe_variants(model,X,X_val,Y,Y_val):
         
         history.append(metrics)
         
-    with open(f"./../experiments/complexity_comparion.json","w") as f:
+    with open(f"./../experiments/{pe_type}_complexity_comparion.json","w") as f:
         json.dump(history,f,indent=4)
         
         
