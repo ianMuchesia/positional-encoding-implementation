@@ -63,3 +63,20 @@ Results on testing with sequence length 50:
 1. 🥇 **No PE (89.6% Accuracy)**: Performed the best. Because self-attention acts as a perfect mirror, a word representation is always most similar to itself. Adding positional signals actually acted as noise here.
 2. 🥈 **Sinusoidal PE (80.6% Accuracy)**: Generalizes well because it uses fixed mathematical waves. The model can dynamically compute sinusoidal positional vectors for indices 11 to 50 even though it has never seen them during training.
 3. 🥉 **Learned PE (75.0% Accuracy)**: Performed the worst. Because the embedding lookup table was only trained on indices 0 to 9, the indices from 10 to 49 contained random, untrained initialization weights. Adding this untrained noise to the token embeddings degraded the model's performance.
+
+---
+
+## 5. Visualizations & Scanned Mathematical Notes
+
+### A. Experiment Visualizations
+Two plots were generated under `experiments/` to visually analyze training performance over 40 epochs:
+* **[experiments/pe_vs_no_pe.png](file:///home/msodoki/Desktop/Mathematics/positional-encoding-impl/experiments/pe_vs_no_pe.png)**: Shows training and validation performance curves when comparing models with positional encodings (PE) versus models without positional encodings (No PE).
+* **[experiments/sinusoidal_vs_learned.png](file:///home/msodoki/Desktop/Mathematics/positional-encoding-impl/experiments/sinusoidal_vs_learned.png)**: Compares the training/validation loss and accuracy trajectories of Sinusoidal vs. Learned positional encodings.
+
+### B. Scanned Handwritten Math Notes
+Scanned pages containing detailed handwritten derivations, proofs, and explanations of the sinusoidal positional encoding math are available in the project:
+* Refer to **[math-notes/sinusoidal_pe_formula.md](file:///home/msodoki/Desktop/Mathematics/positional-encoding-impl/math-notes/sinusoidal_pe_formula.md)** to view links to the notes:
+  * [Page 1](file:///home/msodoki/Desktop/Mathematics/positional-encoding-impl/math-notes/images/page-1.jpeg): Formulas, setup, and dimension coordinates.
+  * [Page 2](file:///home/msodoki/Desktop/Mathematics/positional-encoding-impl/math-notes/images/page-2.jpeg): Frequency variations and wavelengths.
+  * [Page 3](file:///home/msodoki/Desktop/Mathematics/positional-encoding-impl/math-notes/images/page-3.jpeg): Rotation properties and relative position transformation proofs.
+

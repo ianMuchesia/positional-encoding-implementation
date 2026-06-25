@@ -9,8 +9,9 @@ A PyTorch repository implementing both fixed **Sinusoidal Positional Encodings**
 - `src/train.py`: Training loop that measures loss, accuracy, speed, and GPU memory usage across epochs.
 - `src/test.py`: Evaluation helper measuring model accuracy.
 - `notebooks/pe_visualization.ipynb`: Jupyter notebook for pattern visualization of sinusoidal encodings.
-- `notebooks/run_experiments.ipynb`: Jupyter notebook setting up copy and reversal tasks to run comparative experiments.
-- `experiments/`: Saved heatmaps and metrics (JSON) from the complexity and length generalization experiments.
+- `notebooks/run_experiments.ipynb`: Jupyter notebook setting up copy and reversal tasks, training models, and generating comparison plots.
+- `experiments/`: Saved metrics (JSON), heatmap visualizations, and performance comparison plots (`pe_vs_no_pe.png` and `sinusoidal_vs_learned.png`).
+- `math-notes/`: Directory for handwritten mathematical notes (`sinusoidal_pe_formula.md`) and scanned proof images (`images/`).
 - `NOTES.md`: Conceptual revision notes summarizing positional encoding properties, the shape alignment trap, memorization, and length generalization.
 
 ## Installation & Setup

@@ -17,7 +17,7 @@ def train_pe_variants(model,X,X_val,Y,Y_val,pe_type):
 
     optimizer = optim.Adam(model.parameters(),lr=0.001)
 
-    epochs=50
+    epochs=40
 
 
 
